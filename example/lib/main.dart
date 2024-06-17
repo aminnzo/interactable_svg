@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
               constrained: true,
               child: InteractableSvg(
                 key: mapKey,
-                svgAddress: "assets/floor_map.svg",
+                svgAddress: "assets/map.svg",
                 onChanged: (region) {
                   setState(() {
                     selectedRegion = region;
@@ -66,15 +66,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 toggleEnable: true,
                 isMultiSelectable: false,
                 dotColor: Colors.black,
-                selectedColor: Colors.red.withOpacity(0.5),
-                strokeColor: Colors.blue,
-                unSelectableId: "bg",
+                selectedColor: Colors.black38,
+                strokeColor: Colors.white,
                 centerDotEnable: true,
                 centerTextEnable: true,
-                strokeWidth: 2.0,
+                strokeWidth: 1,
                 centerTextStyle: const TextStyle(
                   fontSize: 12,
-                  color: Colors.black,
+                  color: Colors.white,
+
                 ),
               ),
             ),

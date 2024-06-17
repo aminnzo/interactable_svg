@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:interactable_svg/interactable_svg/src/utils/utils.dart';
 
 import '../models/region.dart';
 import '../size_controller.dart';
 
 class RegionPainter extends CustomPainter {
   final Region region;
+
   // final Region? selectedRegion;
   final List<Region> selectedRegion;
   final Color? strokeColor;
@@ -42,7 +44,7 @@ class RegionPainter extends CustomPainter {
 
     final selectedPen = Paint()
       ..color = selectedColor ?? Colors.blue
-      ..strokeWidth = 1.0
+      ..strokeWidth = 2.0
       ..style = PaintingStyle.fill;
 
     final redDot = Paint()
@@ -50,10 +52,17 @@ class RegionPainter extends CustomPainter {
       ..strokeWidth = 3.0
       ..style = PaintingStyle.fill;
 
+    final fill = Paint()
+      ..color = colorFromHex(region.color)
+      ..strokeWidth = strokeWidth ?? 1.0
+      ..style = PaintingStyle.fill;
+
     final bounds = region.path.getBounds();
 
     _scale = sizeController.calculateScale(size);
     canvas.scale(_scale);
+
+    canvas.drawPath(region.path, fill);
 
     if (selectedRegion.contains(region)) {
       canvas.drawPath(region.path, selectedPen);
@@ -68,7 +77,7 @@ class RegionPainter extends CustomPainter {
       TextPainter tp = TextPainter(
         text: span,
         textAlign: TextAlign.center,
-        textDirection: TextDirection.ltr,
+        textDirection: TextDirection.rtl,
       );
       tp.layout();
       tp.paint(canvas, bounds.center);

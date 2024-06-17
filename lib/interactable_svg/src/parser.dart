@@ -30,7 +30,8 @@ class Parser {
       final region = Region(
           id: regionData.group(1)!,
           name: regionData.group(2)!,
-          path: parseSvgPath(regionData.group(3)!));
+          color: regionData.group(3)!,
+          path: parseSvgPath(regionData.group(4)!));
 
       sizeController.addBounds(region.path.getBounds());
       regionList.add(region);
@@ -50,7 +51,8 @@ class Parser {
       final region = Region(
           id: regionData.group(1)!,
           name: regionData.group(2)!,
-          path: parseSvgPath(regionData.group(3)!));
+          color: regionData.group(3)!,
+          path: parseSvgPath(regionData.group(4)!));
 
       sizeController.addBounds(region.path.getBounds());
       regionList.add(region);
@@ -73,7 +75,8 @@ class Parser {
       final region = Region(
           id: regionData.group(1)!,
           name: regionData.group(2)!,
-          path: parseSvgPath(regionData.group(3)!));
+          color: regionData.group(3)!,
+          path: parseSvgPath(regionData.group(4)!));
 
       sizeController.addBounds(region.path.getBounds());
       regionList.add(region);
