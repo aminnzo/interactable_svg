@@ -5,7 +5,6 @@ import '../parser.dart';
 import '../size_controller.dart';
 
 class InteractableSvg extends StatefulWidget {
-  final bool _isFromWeb;
   final bool _isString;
   final double? width;
   final double? height;
@@ -39,30 +38,8 @@ class InteractableSvg extends StatefulWidget {
     this.centerTextStyle,
     this.toggleEnable,
     this.isMultiSelectable,
-  })  : _isFromWeb = false,
-        _isString = false,
+  })  : _isString = false,
         fileName = "",
-        super(key: key);
-
-  const InteractableSvg.network(
-      {required this.fileName,
-      Key? key,
-      required this.svgAddress,
-      required this.onChanged,
-      this.width,
-      this.height,
-      this.strokeColor,
-      this.strokeWidth,
-      this.selectedColor,
-      this.dotColor,
-      this.unSelectableId,
-      this.centerDotEnable,
-      this.centerTextEnable,
-      this.centerTextStyle,
-      this.toggleEnable,
-      this.isMultiSelectable})
-      : _isFromWeb = true,
-        _isString = false,
         super(key: key);
 
   const InteractableSvg.string(
@@ -81,8 +58,7 @@ class InteractableSvg extends StatefulWidget {
       this.centerTextStyle,
       this.toggleEnable,
       this.isMultiSelectable})
-      : _isFromWeb = false,
-        _isString = true,
+      : _isString = true,
         fileName = "",
         super(key: key);
 
@@ -107,10 +83,7 @@ class InteractableSvgState extends State<InteractableSvg> {
 
   _loadRegionList() async {
     late final List<Region> list;
-    if (widget._isFromWeb) {
-      list = await Parser.instance
-          .svgToRegionListNetwork(widget.svgAddress, widget.fileName);
-    } else if (widget._isString) {
+    if (widget._isString) {
       list = await Parser.instance.svgToRegionListString(widget.svgAddress);
     } else {
       list = await Parser.instance.svgToRegionList(widget.svgAddress);
